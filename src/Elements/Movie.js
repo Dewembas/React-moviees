@@ -7,6 +7,7 @@ function Movie(){
     const [data, setData] = useState([])
     const [page, setPage] = useState(null)
     const [totalCount, setTotalCount] = useState(1)
+  let newArr=data
   
    
     
@@ -36,7 +37,7 @@ const handleShow = () => setShow(true);
    return (<div>
         <div className="row row_poster">
             {data.map((e, index)=><div key={e.id} >
-           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => handleShow(index) } alt="poster" ></img>
+           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => handleShow() } alt="poster" ></img>
            <>
     
 
@@ -47,19 +48,19 @@ const handleShow = () => setShow(true);
       backdrop="static"
       keyboard={false}
       style={{
-        backgroundImage: `url(http://image.tmdb.org/t/p/original/${e.poster_path})`,
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${e.poster_path}) `,
                 width: '100%',
                 backgroundSize: "cover",
                 backgroundPosition: 'center',
-                backgroundColor: 'rgb(0, 0, 0, 0.7)'
+                
     }}
     >
       <Modal.Header closeButton>
         <Modal.Title></Modal.Title>
       </Modal.Header>
       <Modal.Body>
-       
-       0000
+        
+        
       </Modal.Body>
       <Modal.Footer>
        
