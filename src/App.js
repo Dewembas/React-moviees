@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './Elements/Menu'
 import MyAcount from './pages/mayAcount'
-import MyFavorite from './pages/myFavorite'
+import MyFavorite from './pages/MyFavorite'
 import PageNone from './pages/PageNone'
 import {
   BrowserRouter as Router,
@@ -13,6 +13,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  
   return (
     <Router>
     <Switch>
