@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from './Elements/Menu'
 import MyAcount from './pages/mayAcount'
 import MyFavorite from './pages/MyFavorite'
+
 import PageNone from './pages/PageNone'
 import {
   BrowserRouter as Router,
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/">
         <Menu />
         <PageNone />
+        
       </Route>
       <Route path="/MyAcount">
         <Menu />

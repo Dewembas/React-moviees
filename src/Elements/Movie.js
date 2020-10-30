@@ -3,11 +3,13 @@ import Pagination from 'react-js-pagination'
 import ModalMovie from '../Elements/ModalMovie'
 import Modal from 'react-bootstrap/Modal'
 
-function Movie(){
+function Movie(props){
     const [data, setData] = useState([])
     const [page, setPage] = useState(null)
     const [totalCount, setTotalCount] = useState(1)
-  let newArr=data
+    const [items, saveItems] = useState([]);
+    const [openItemIndex, saveOpenItemIndex] = useState(null);
+
   
    
     
@@ -20,25 +22,27 @@ function Movie(){
         setData(res.results)})
     .catch(error => console.error(error))
 
-},[page])
+},[page, data])
 
-let movposb = ()=> {alert(`${<div className="row row_poster">
-{data.map((e, index)=><div key={e.id} >
-<p>Title</p>
-</div>)}
 
-</div>}`)}
 
-const [show, setShow] = useState(false);
+const [show, setShow] = useState(null);
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
 
    return (<div>
-        <div className="row row_poster">
-            {data.map((e, index)=><div key={e.id} >
-           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => handleShow() } alt="poster" ></img>
-           <>
+    
+
+
+     <div className="row row_poster">
+            {data.map((e,index, useState)=><div  key={e.id} >
+           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`}  onClick={() => handleShow(useState) } alt="poster" ></img>
+          
+            </div>)
+            
+            }
+             <>
     
 
     <Modal 
@@ -48,30 +52,17 @@ const handleShow = () => setShow(true);
       backdrop="static"
       keyboard={false}
       style={{
-        backgroundImage: `url(http://image.tmdb.org/t/p/original/${e.poster_path}) `,
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${data?.poster_path}) `,
                 width: '100%',
                 backgroundSize: "cover",
                 backgroundPosition: 'center',
                 
     }}
     >
-      <Modal.Header closeButton>
-        <Modal.Title></Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        
-        
-      </Modal.Body>
-      <Modal.Footer>
-       
-      </Modal.Footer>
+      
     </Modal>
   </>
-            </div>)
-            
-            }
-            
-        </div>
+        </div> 
         <Pagination
        activePage={page}
        itemsCountPerPage={20}
@@ -94,6 +85,6 @@ const handleShow = () => setShow(true);
 
 
     </div>
-   )
-}
+   )}
+
 export default Movie
