@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Menu from './Elements/Menu'
 import MyAcount from './pages/mayAcount'
 import MyFavorite from './pages/MyFavorite'
@@ -14,13 +14,15 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  
+ 
   return (
     <Router>
     <Switch>
       <Route exact path="/">
-        <Menu />
-        <PageNone />
+      <Menu />
+        <PageNone 
+         
+        />
         
       </Route>
       <Route path="/MyAcount">

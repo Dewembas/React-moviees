@@ -1,9 +1,9 @@
 import React from 'react';
-
+import FavoriteMovie from '../Elements/FavoriteMovie'
 
 function MyFavorite(){
     return(
-        <p>be</p>
+        <FavoriteMovie />
     )
 }
 

@@ -3,7 +3,7 @@ import Movie from "../Elements/Movie"
 
 function PageNone(props){
 
-    
+ 
     return(<div>
       
       <  Movie  />
