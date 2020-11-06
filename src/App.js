@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Menu from './Elements/Menu'
 import MyAcount from './pages/mayAcount'
 import MyFavorite from './pages/MyFavorite'
 
-import PageNone from './pages/PageNone'
+import PageNone from './pages/MoviePage'
 import {
   BrowserRouter as Router,
   Switch,

@@ -1,20 +1,25 @@
 import React, {useState, useEffect}from 'react';
 import Pagination from 'react-js-pagination'
-import Modals from "./Modals";
-import useModal from '../Elements/useModal';
-// import Modal from 'react-bootstrap/Modal'
-import Menu from './Menu'
+
 function Movie(props){
-    const{modalPage, setModalPage, }=props
+    
     const [data, setData] = useState([])
     const [page, setPage] = useState(null)
     const [totalCount, setTotalCount] = useState(1)
  
     const [openItemIndex, saveOpenItemIndex] = useState(null);
    
-    const {isShowing, toggle} = useModal();
-
-   
+    
+let arr = []
+let objLocal ={
+  img: data[openItemIndex]?.poster_path,
+  title: data[openItemIndex]?.original_title,
+  opis:  data[openItemIndex]?.overview,
+}
+  if(localStorage.getItem("favArr")){
+    arr = JSON.parse(localStorage.getItem("favArr"))
+  
+  } 
     
     
     useEffect(() => {
@@ -28,7 +33,7 @@ function Movie(props){
 },[page ])
 
 
-if(isShowing===null){
+if(openItemIndex===null){
 
    return (<div >
     
@@ -36,7 +41,7 @@ if(isShowing===null){
 
      <div className="row row_poster">
             {data.map((e,index, )=><div  key={e.id} >
-           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => { toggle(index) }}
+           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => { saveOpenItemIndex(index) }}
             
            alt="poster" ></img>
    
@@ -48,34 +53,7 @@ if(isShowing===null){
             /* <>
             
 
-    <Modal
-    show={!!openItemIndex}
-    onHide={() => saveOpenItemIndex(null)}
-    centered
     
-    style={{
-        backgroundImage: `url(http://image.tmdb.org/t/p/original/${data[openItemIndex]?.poster_path}) `,
-                width: '100%',
-                backgroundSize: "cover",
-                backgroundPosition: 'center',
-                backgroundRepeat: "no-repeat",
-                
-    }
-      }contentClassName='myModal'
-     ><Menu />
-       <button onClick={()=>localStorage.setItem('favArr',JSON.stringify([ <p className="textMod">{data[openItemIndex]?.original_title}</p>]))}>add to fovorite</button> 
-     <buton  onClick={() => saveOpenItemIndex(null)}>Back to list</buton>
-     <buton  onClick={() => saveOpenItemIndex(openItemIndex+1)}>NextMovie</buton>
-     < img  src={`http://image.tmdb.org/t/p/w342/${data[openItemIndex]?.poster_path}`} alt='BackGround'/>
-    <p className="textMod">{data[openItemIndex]?.original_title}</p>
-    <p>Score: {data[openItemIndex]?.vote_average}</p>
-    <p>Language: {data[openItemIndex]?.original_language}</p>
-    <p>Relese: {data[openItemIndex]?.release_date}</p>
-    <p>{data[openItemIndex]?.overview}</p>
-  
- 
-
-    </ Modal>
     
   
   </> */}
@@ -100,17 +78,59 @@ if(isShowing===null){
    
   
 
-   <button className="button-default" onClick={toggle}>Show Modal</button>
 );
 
 
     </div>
    )}else{return(
-    <> 
-    <Modals
-      isShowing={isShowing}
-      hide={toggle}
-    /></>)
+    
+    <div
+    className="modalBack"
+    show={!!openItemIndex+1}
+    onHide={() => saveOpenItemIndex(null)}
+   
+    
+    style={{
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${data[openItemIndex]?.poster_path}) `,
+                width: '100%',
+                backgroundSize: "cover",
+                backgroundPosition: 'center',
+                backgroundRepeat: "no-repeat",
+                
+    }
+      }
+     ><div className="modalContent">
+      <div className="modal_buttons_navigayion">
+     <button  onClick={() => saveOpenItemIndex(null)}>Back to list</button>
+     <button  onClick={() => {if(openItemIndex<=18)
+                            {saveOpenItemIndex(openItemIndex+1)}
+      }}>NextMovie</button>
+      
+      </div> 
+           <div className="button_add_favorite">
+             <button onClick={()=>[arr.push(localStorage.setItem('favArr',JSON.stringify([ objLocal])))]}>add to fovorite</button>
+              </div>   
+
+      <div className="modal_films"> 
+        < img  src={`http://image.tmdb.org/t/p/w342/${data[openItemIndex]?.poster_path}`} alt='BackGround'/>
+    <div>
+      <p className="textMod">{data[openItemIndex]?.original_title}</p>
+      <div className="modal_films_head">
+        <p>Score: {data[openItemIndex]?.vote_average}</p>
+    <p>Language: {data[openItemIndex]?.original_language}</p>
+    <p>Relese: {data[openItemIndex]?.release_date}</p>
+    </div>
+    
+    <p>{data[openItemIndex]?.overview}</p>
+    </div>
+    </div>
+    
+  </div>
+ 
+
+    </ div>
+    
+   )
    }
   }
 

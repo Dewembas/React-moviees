@@ -2,20 +2,10 @@ import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 
 
-const Modal = ({ isShowing, hide,toggle, setIsShowing, props}) => {
-  const [data, setData] = useState([])
+const Modal = ({ isShowing, hide,toggle, setIsShowing, props, data, setData}) => {
   
-  useEffect(() => {
-    fetch(`http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c`)
-.then(res => res.json())
-.then(res => {
-   
-    setData(res.results)})
-.catch(error => console.error(error))
+const posterUrl = "http://image.tmdb.org/t/p/w200"
 
-},[])
-
- const back=data.map((e)=><img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`}  alt="poster" ></img>)
   return( isShowing ? ReactDOM.createPortal(
   
   <React.Fragment>
@@ -24,7 +14,7 @@ const Modal = ({ isShowing, hide,toggle, setIsShowing, props}) => {
     <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
       <div className="modals"
       style={{
-        backgroundImage: `url(${data[setIsShowing]?.poster_path})`,
+        backgroundImage: `url(${posterUrl+data?.poster_path})`,
         width: '100%',
         height: 'calc(100vh - 80px)',
         backgroundSize: "cover",
