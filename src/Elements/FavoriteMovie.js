@@ -4,7 +4,7 @@ const FavoreteMovie = (movieId) => {
   const [openFafvist, saveopenFafvist] = useState(null);
   const list = localStorage.getItem('favorite-movies')
   const favContent = JSON.parse(list)
-  const [data, setData] = useState([])
+  const [, setData] = useState([])
 
 
 
@@ -58,7 +58,7 @@ const FavoreteMovie = (movieId) => {
         <div
           className="modalBack"
           show={`!!openFafvist`}
-          onHide={() => saveopenFafvist(null)}
+          
 
 
           style={{
@@ -75,6 +75,7 @@ const FavoreteMovie = (movieId) => {
               <button className="next" onClick={() => saveopenFafvist(null)}>Back <span>to list</span></button>
               <button className="back" onClick={() => {
                 if (openFafvist <= 18) { saveopenFafvist(openFafvist+1) }
+                
               }}>Next <span>Movie</span></button>
 
             </div>

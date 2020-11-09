@@ -43,6 +43,20 @@
 .menuBotom{
   display: flex;
 }
+.menu_button{
+  display: flex;
+    flex-direction: column;
+}
+.menu_button a{
+  color: rgb(48, 47, 47);
+    text-decoration: none;
+    text-align: center;
+}
+.menu_button a:hover{
+  color: rgb(31, 30, 30);
+    background-color: rgba(8, 109, 241, 0.808);
+}
+
 .logo{
   display: flex;
 }
@@ -149,7 +163,7 @@ text-decoration: none;
 }
 .active{
   color:  white;
-  background-color:  rgb(1, 111, 255);
+  background-color:  rgba(1, 111, 255, 0.774);
 }
 
 

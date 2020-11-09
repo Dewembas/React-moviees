@@ -94,7 +94,7 @@ if(openItemIndex===null){
     <div
     className="modalBack"
     show={!!openItemIndex+1}
-    onHide={() => saveOpenItemIndex(null)}
+   
    
     
     style={{
