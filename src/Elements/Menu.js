@@ -14,12 +14,12 @@ return (
   <div className ="menu">
     <div className="containere">
  <div className="logo">
- <img src={Logo} width='40px' alt={"logo"} /><h1>Movies</h1>
+ <img src={Logo} width='40px' alt="logo" /><h1>Movies</h1>
  </div>
  <div className="menuBotom">
   <DropdownButton  variant="secondary"  id="dropdown-basic-button" title="Menu">
   <Dropdown.Item ><Link className={location.pathname === '/' ? 'active' : ''} to="/">Home</Link></Dropdown.Item>
-  <Dropdown.Item ><Link className={location.pathname === '/MyAcount' ? 'active' : ''} to="/MyAcount">MyAcount</Link></Dropdown.Item>
+  
   <Dropdown.Item ><Link className={location.pathname === '/MyFavorite' ? 'active' : ''} to="/MyFavorite">MyFavorite</Link></Dropdown.Item>
 </DropdownButton>
 </div>

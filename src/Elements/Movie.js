@@ -1,6 +1,7 @@
 import React, {useState, useEffect}from 'react';
 import Pagination from 'react-js-pagination'
 
+
 function Movie(props){
     
     const [data, setData] = useState([])
@@ -9,17 +10,22 @@ function Movie(props){
  
     const [openItemIndex, saveOpenItemIndex] = useState(null);
    
-    
-let arr = []
+    const favotireMoviesIds = JSON.parse(localStorage.getItem('favorite-movies')) || [];
+const markMovieAsFavorite = movieId => {
+    localStorage.setItem('favorite-movies', JSON.stringify([...favotireMoviesIds, movieId]));
+};
+
+
 let objLocal ={
   img: data[openItemIndex]?.poster_path,
   title: data[openItemIndex]?.original_title,
   opis:  data[openItemIndex]?.overview,
+  id: data[openItemIndex]?.id,
+  language: data[openItemIndex]?.original_language,
+  date: data[openItemIndex]?.release_date,
+  score: data[openItemIndex]?.vote_average,
 }
-  if(localStorage.getItem("favArr")){
-    arr = JSON.parse(localStorage.getItem("favArr"))
   
-  } 
     
     
     useEffect(() => {
@@ -38,13 +44,14 @@ if(openItemIndex===null){
    return (<div >
     
     
-
+<div className="release"><h2>Latest release</h2></div>
      <div className="row row_poster">
-            {data.map((e,index, )=><div  key={e.id} >
-           <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} onClick={() => { saveOpenItemIndex(index) }}
+            {data.map((e,index, )=><div  key={e.id}  className="img-wrap" onClick={() => { saveOpenItemIndex(index) }}>
+            <img className="posters" src={`http://image.tmdb.org/t/p/w342/${e.poster_path}`} 
             
            alt="poster" ></img>
-   
+   <div className="title_poster"><div>{e.original_title}</div></div>
+           
             </div>)
             
             }
@@ -101,27 +108,39 @@ if(openItemIndex===null){
       }
      ><div className="modalContent">
       <div className="modal_buttons_navigayion">
-     <button  onClick={() => saveOpenItemIndex(null)}>Back to list</button>
-     <button  onClick={() => {if(openItemIndex<=18)
+     <button className="next"  onClick={() => saveOpenItemIndex(null)}>Back <span>to list</span></button>
+     <button className="back"  onClick={() => {if(openItemIndex<=18)
                             {saveOpenItemIndex(openItemIndex+1)}
-      }}>NextMovie</button>
+                            if (openItemIndex === 19 && page !== totalCount) {
+                              setPage(page + 1);
+                              saveOpenItemIndex(null)
+                            }
+      }}>Next <span>Movie</span></button>
       
       </div> 
-           <div className="button_add_favorite">
-             <button onClick={()=>[arr.push(localStorage.setItem('favArr',JSON.stringify([ objLocal])))]}>add to fovorite</button>
+           <div className="button_del_favorite">
+             <button className="add_to_favorite" onClick={()=>markMovieAsFavorite(objLocal)}
+             
+             ><span>Add to fovorite</span><p className="mobile_icon">&#9733;</p></button>
               </div>   
 
       <div className="modal_films"> 
         < img  src={`http://image.tmdb.org/t/p/w342/${data[openItemIndex]?.poster_path}`} alt='BackGround'/>
-    <div>
-      <p className="textMod">{data[openItemIndex]?.original_title}</p>
+    <div className="info_films">
+      
+      <h2 className="textMod">{data[openItemIndex]?.original_title}</h2>
+     
       <div className="modal_films_head">
         <p>Score: {data[openItemIndex]?.vote_average}</p>
+        <div className='line'>|</div>
     <p>Language: {data[openItemIndex]?.original_language}</p>
+    <div className='line' >|</div>
     <p>Relese: {data[openItemIndex]?.release_date}</p>
     </div>
+    <div className="modal_description">
+      <p>{data[openItemIndex]?.overview}</p>
+    </div>
     
-    <p>{data[openItemIndex]?.overview}</p>
     </div>
     </div>
     

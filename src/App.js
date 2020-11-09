@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from './Elements/Menu'
-import MyAcount from './pages/mayAcount'
+
 import MyFavorite from './pages/MyFavorite'
 
 import PageNone from './pages/MoviePage'
@@ -24,10 +24,6 @@ function App() {
          
         />
         
-      </Route>
-      <Route path="/MyAcount">
-        <Menu />
-        <MyAcount />
       </Route>
       <Route path="/MyFavorite">
         <Menu />
