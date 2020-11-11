@@ -67,9 +67,14 @@
   margin: 0 auto;
   max-width: 1500px;
 }
-.containere h1{
+.containere a{
 color: rgb(190, 187, 187);
+text-decoration: none;
 }
+.containere a:hover{
+  color: rgb(190, 187, 187);
+  text-decoration: none;
+  }
 .containere img{
   width: 50px;
 }
@@ -254,6 +259,10 @@ margin: 0 auto;
   border-top: solid #626975;
   padding-top: 10px;
 }
+.favorite_movie_hed_text{
+  color: rgb(190, 187, 187);
+  padding: 15px;
+}
 .all_content_favorite{
   display: flex;
   flex-direction: row;
@@ -276,11 +285,20 @@ margin: 0 auto;
 .unfavorite_mobile{
   display: none;
 }
+.no_faforite_films{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(52, 68, 87);
+}
 
 
 
 
 @media screen and (max-width: 900px) {
+  
   .modalContent {
 padding: 0;
 height: 100vh;

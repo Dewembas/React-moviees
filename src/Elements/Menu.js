@@ -4,7 +4,6 @@ import {
     useLocation
   } from "react-router-dom";
 import Logo from '../img/logo.png'
- 
   import DropdownButton from 'react-bootstrap/DropdownButton'
 
 function Menu() {
@@ -14,7 +13,7 @@ return (
   <div className ="menu">
     <div className="containere">
  <div className="logo">
- <img src={Logo} width='40px' alt="logo" /><h1>Movies</h1>
+ <img src={Logo} width='40px' alt="logo" /><h1><a href="http://localhost:3000">Movies</a></h1>
  </div>
  <div className="menuBotom">
   <DropdownButton  variant="secondary"  id="dropdown-basic-button" title="Menu">

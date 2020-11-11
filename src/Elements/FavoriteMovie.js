@@ -23,7 +23,10 @@ const FavoreteMovie = (movieId) => {
   }, [])
   if (favContent.length >= 1) {
     const favList = favContent.map((element, index) => {
-      return <div key={element.id} className="all_content_favorite" >
+      return<div> 
+        <h2 className="favorite_movie_hed_text">Favorite movie</h2>
+        <div key={element.id} className="all_content_favorite" >
+        
         <img className="img_favorite" src={`http://image.tmdb.org/t/p/w342/${element.img}`} alt="poster" onClick={() => { saveopenFafvist(index) }}></img>
         <div className="all_text_favorite">
           <h2 className="title_favorite">{element.title}</h2>
@@ -39,6 +42,7 @@ const FavoreteMovie = (movieId) => {
           window.location.reload()
           localStorage.setItem("favorite-movies", JSON.stringify(favContent))
         }} >Unfavorite</button>
+      </div>
       </div>
 
     })
@@ -75,7 +79,9 @@ const FavoreteMovie = (movieId) => {
               <button className="next" onClick={() => saveopenFafvist(null)}>Back <span>to list</span></button>
               <button className="back" onClick={() => {
                 if (openFafvist <= 18) { saveopenFafvist(openFafvist+1) }
-                
+                if(openFafvist>= favContent.length -1){
+                  saveopenFafvist(null)
+                }
               }}>Next <span>Movie</span></button>
 
             </div>
@@ -115,7 +121,7 @@ const FavoreteMovie = (movieId) => {
     }
   }
   else if (favContent.length === 0) {
-    return <div><p>Not films</p></div>
+    return <div className="no_faforite_films"><p>Not films</p></div>
 
   }
 }
