@@ -1,39 +1,69 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 
 
-const Modal = ({ isShowing, hide,toggle, setIsShowing, props, data, setData}) => {
+
+const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCount, objLocal, markMovieAsFavorite}) => {
   
-const posterUrl = "http://image.tmdb.org/t/p/w200"
-
-  return( isShowing ? ReactDOM.createPortal(
-  
-  <React.Fragment>
    
-    <div className="modal-overlay"/>
-    <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <div className="modals"
-      style={{
-        backgroundImage: `url(${posterUrl+data?.poster_path})`,
-        width: '100%',
-        height: 'calc(100vh - 80px)',
-        backgroundSize: "cover",
-       
-        backgroundPosition: 'center',
-        backgroundColor: 'rgb(0, 0, 0, 0.7)'
-  }}
-      >
-        <div className="modal-header">
-          <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <p>
-          ss
-        </p>
-      </div>
+  
+
+  return( <div
+    className="modalBack"
+    show={!!openItemIndex+1}
+   
+   
+    
+    style={{
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${data[openItemIndex]?.poster_path}) `,
+                width: '100%',
+                backgroundSize: "cover",
+                backgroundPosition: 'center',
+                backgroundRepeat: "no-repeat",
+                
+    }
+      }
+     ><div className="modalContent">
+      <div className="modal_buttons_navigayion">
+     <button className="next"  onClick={() => saveOpenItemIndex(null)}>Back <span>to list</span></button>
+     <button className="back"  onClick={() => {if(openItemIndex<=18)
+                            {saveOpenItemIndex(openItemIndex+1)}
+                            if (openItemIndex === 19 && page !== totalCount) {
+                              setPage(page + 1);
+                              saveOpenItemIndex(openItemIndex+1)
+                            }
+      }}>Next <span>Movie</span></button>
+      
+      </div> 
+           <div className="button_del_favorite">
+             <button  className="add_to_favorite " onClick={()=>markMovieAsFavorite(objLocal)}
+             
+             ><span>Add to fovorite</span><p className="mobile_icon">&#9733;</p></button>
+              </div>   
+
+      <div className="modal_films"> 
+        < img  src={`http://image.tmdb.org/t/p/w342/${data[openItemIndex]?.poster_path}`} alt='BackGround'/>
+    <div className="info_films">
+      
+      <h2 className="textMod">{data[openItemIndex]?.original_title}</h2>
+     
+      <div className="modal_films_head">
+        <p>Score: {data[openItemIndex]?.vote_average}</p>
+        <div className='line'>|</div>
+    <p>Language: {data[openItemIndex]?.original_language}</p>
+    <div className='line' >|</div>
+    <p>Relese: {data[openItemIndex]?.release_date}</p>
     </div>
-  </React.Fragment>, document.body
-) : null)
+    <div className="modal_description">
+      <p>{data[openItemIndex]?.overview}</p>
+    </div>
+    
+    </div>
+    </div>
+    
+  </div>
+ 
+
+    </ div>
+    )
 }
 export default Modal;
