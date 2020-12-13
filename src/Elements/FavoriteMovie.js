@@ -15,7 +15,11 @@ const FavoreteMovie = (movieId) => {
       .catch(error => console.error(error))
 
   }, [])
-  if (favContent.length >= 1) {
+  
+  if (localStorage.length===0 || favContent.length===0) {
+    return<div className="no_faforite_films"><p>No films</p></div>
+  }
+  else  {
     const favList = favContent.map((element, index) => {
       return<div key={element.id}> 
         
@@ -60,10 +64,6 @@ list={list}
 />
       )
     }
-  }
-  else if (favContent.length === 0) {
-    return <div className="no_faforite_films"><p>Not films</p></div>
-
   }
 }
 export default FavoreteMovie

@@ -1,10 +1,12 @@
+
 import React from 'react';
 
 
 
+
 const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCount, objLocal, markMovieAsFavorite}) => {
+  const arr=JSON.parse(localStorage.getItem('favorite-movies'))
   
-   
   
 
   return( <div
@@ -22,7 +24,7 @@ const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCo
                 
     }
       }
-     ><div className="modalContent">
+     ><div key={data[openItemIndex]?.id} className="modalContent">
       <div className="modal_buttons_navigayion">
      <button className="next"  onClick={() => saveOpenItemIndex(null)}>Back <span>to list</span></button>
      <button className="back"  onClick={() => {if(openItemIndex<=18)
@@ -35,7 +37,16 @@ const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCo
       
       </div> 
            <div className="button_del_favorite">
-             <button  className="add_to_favorite " onClick={()=>markMovieAsFavorite(objLocal)}
+             <button  className="add_to_favorite " onClick={()=>{
+        if(arr){
+          markMovieAsFavorite(undefined)
+          console.log("ura")
+        }
+       else if (arr[objLocal]?.id!==data[openItemIndex]?.id){
+          markMovieAsFavorite(objLocal)
+          console.log("dob")
+        }
+          }}
              
              ><span>Add to fovorite</span><p className="mobile_icon">&#9733;</p></button>
               </div>   
