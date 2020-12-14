@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useState} from 'react';
 
 
 
@@ -36,19 +36,19 @@ const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCo
       }}>Next <span>Movie</span></button>
       
       </div> 
-           <div className="button_del_favorite">
-             <button  className="add_to_favorite " onClick={()=>{
-        if(arr){
-          markMovieAsFavorite(undefined)
-          console.log("ura")
-        }
-       else if (arr[objLocal]?.id!==data[openItemIndex]?.id){
-          markMovieAsFavorite(objLocal)
-          console.log("dob")
-        }
-          }}
+           <div className="button_added_favorite">
+             {arr.find(film => film.id === data[openItemIndex].id) ?
+             <button  className="added_favorite " ><span>Movie added to favorites</span>
+             <p className="mobile_icon_added">&#9733;</p>
+             </button> :
              
-             ><span>Add to fovorite</span><p className="mobile_icon">&#9733;</p></button>
+             <button className="add_to_favorite " onClick={()=>{markMovieAsFavorite(objLocal) }}
+             ><span>Add to fovorite</span>
+             <p className="mobile_icon">&#9733;</p>
+             </button>
+             }
+            
+             
               </div>   
 
       <div className="modal_films"> 

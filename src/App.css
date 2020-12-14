@@ -192,7 +192,7 @@ margin: 0 auto;
 .button_add_favorite{
   float:right;
 }
-.button_del_favorite{
+.button_added_favorite{
   float:right;
 }
 .modal_films{
@@ -221,8 +221,17 @@ margin: 0 auto;
   background-color: rgb(197, 197, 197);
   transition: 0.1s
 }
-.add_to_favorite:focus{
-  background-color: rgb(149, 148, 151);
+
+.added_favorite{
+  border: solid 1px #626975;
+  cursor: auto;
+  font-size: 15px;
+  color: #626975;
+  background-color: rgb(197, 197, 197);
+  border-radius: 5px;
+}
+.mobile_icon_added{
+  display: none;
 }
 .del_favorite{
     border: solid 1px #626975;
@@ -347,6 +356,11 @@ height: 100vh;
     font-size: 25px;
     color: white;
 }
+.mobile_icon_added{
+  display: contents;
+    font-size: 25px;
+    
+}
 
 .add_to_favorite span{
   display: none;
@@ -355,7 +369,13 @@ height: 100vh;
   margin-right: 22px;
   border: solid 1px #ffffff;
 }
-
+.added_favorite{
+  margin-right: 22px;
+  border: solid 1px #ffffff;
+}
+.added_favorite span{
+  display: none;
+}
 
 .line{
   display: none;
