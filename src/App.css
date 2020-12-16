@@ -283,7 +283,8 @@ margin: 0 auto;
   margin-left: 15px;
 }
 .img_favorite{
-  height: 400px;
+  height: 250px;
+  width: 180px;
 }
 .all_text_favorite{
   padding-left: 20px;

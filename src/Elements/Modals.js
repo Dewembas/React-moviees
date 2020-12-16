@@ -7,7 +7,7 @@ import React,{useState} from 'react';
 const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCount, objLocal, markMovieAsFavorite}) => {
   const arr=JSON.parse(localStorage.getItem('favorite-movies'))
   
-  
+  const [, setStateButon]= useState(false)
 
   return( <div
     className="modalBack"
@@ -38,11 +38,12 @@ const Modal = ({  page, setPage, data, openItemIndex, saveOpenItemIndex, totalCo
       </div> 
            <div className="button_added_favorite">
              {arr.find(film => film.id === data[openItemIndex].id) ?
-             <button  className="added_favorite " ><span>Movie added to favorites</span>
+             <button  className="added_favorite " ><span>Movie added to favorite</span>
              <p className="mobile_icon_added">&#9733;</p>
              </button> :
              
-             <button className="add_to_favorite " onClick={()=>{markMovieAsFavorite(objLocal) }}
+             <button className="add_to_favorite " onClick={()=>{markMovieAsFavorite(objLocal) 
+              setStateButon(true) } }
              ><span>Add to fovorite</span>
              <p className="mobile_icon">&#9733;</p>
              </button>
